@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f5f0">
+<meta name="description" content="CJPTube — a visual archive of creative protest videos, shorts, reels and memes.">
+<title>CJPTube — CJP Visual Archive</title>
+<style>
+:root{
+ --bg:#f5f3ee;--paper:#fffdf8;--paper2:#eeece5;--text:#161616;--muted:#77766f;
+ --line:#ddd9cf;--accent:#ff3b30;--violet:#7458ff;--yellow:#e7aa19;--shadow:0 16px 45px #211d160d
+}
+[data-theme="dark"]{
+ --bg:#0c0c0d;--paper:#141416;--paper2:#1b1b1e;--text:#f5f5f3;--muted:#9c9b97;
+ --line:#2b2b2f;--shadow:0 18px 55px #0006
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;transition:background .25s,color .25s}
+button,input{font:inherit}button{cursor:pointer}a{color:inherit}
+.topbar{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg) 91%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav{height:70px;max-width:1480px;margin:auto;padding:0 22px;display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:205px}.logo{width:39px;height:39px;border-radius:13px;background:linear-gradient(135deg,#ff3b30,#ff725f 40%,#7458ff);display:grid;place-items:center;color:#fff;box-shadow:0 8px 24px #ff3b3026}.logo:after{
+ content:"🪳";
+ font-size:20px;
+ filter:drop-shadow(0 2px 2px #0004);
+}.brand b{display:block;letter-spacing:-.045em;font-size:17px}.brand small{font-size:9px;color:var(--muted);letter-spacing:.11em;text-transform:uppercase}
+.search{height:42px;flex:1;max-width:650px;margin:auto;display:flex;border:1px solid var(--line);border-radius:13px;background:var(--paper);overflow:hidden}.search input{min-width:0;flex:1;border:0;outline:0;background:transparent;color:var(--text);padding:0 15px;font-size:13px}.search button{width:52px;border:0;border-left:1px solid var(--line);background:var(--paper2);color:var(--text)}
+.topActions{display:flex;align-items:center;gap:5px;min-width:205px;justify-content:flex-end}.topActions button{border:0;background:transparent;color:var(--muted);height:38px;min-width:38px;padding:0 9px;border-radius:10px}.topActions button:hover{background:var(--paper2);color:var(--text)}.mode{font-size:17px}.avatar{width:34px;height:34px;border-radius:11px;background:#171717;color:#fff;display:grid;place-items:center;font-size:18px;line-height:1}
+.navTopics{border-top:1px solid var(--line);display:flex;gap:7px;overflow:auto;padding:8px max(22px,calc((100vw - 1480px)/2 + 22px));background:var(--bg)}
+.navTopics button{border:1px solid var(--line);background:var(--paper);color:var(--muted);padding:7px 14px;border-radius:999px;white-space:nowrap;font-size:11px;font-weight:700}.navTopics button.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+.shell{max-width:1480px;margin:auto;display:grid;grid-template-columns:215px minmax(0,1fr)}
+.side{position:sticky;top:108px;height:calc(100vh - 108px);padding:19px 10px;border-right:1px solid var(--line)}
+.side button{width:100%;border:0;background:transparent;color:var(--muted);display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:11px;text-align:left;font-size:12px;font-weight:650;margin-bottom:3px}.side button:hover,.side button.active{background:var(--paper);color:var(--text);box-shadow:0 5px 20px #00000006}.ico{width:29px;height:29px;border-radius:9px;background:var(--paper2);display:grid;place-items:center}.side button.active .ico{background:var(--text);color:var(--bg)}.sep{border:0;border-top:1px solid var(--line);margin:17px 10px}.sideLabel{font-size:9px;color:var(--muted);font-weight:850;letter-spacing:.12em;padding:0 12px 7px;text-transform:uppercase}
+.main{min-width:0;padding:25px 27px 70px}
+.hero{display:grid;grid-template-columns:1.55fr .45fr;gap:15px;margin-bottom:28px}
+.heroMain{position:relative;min-height:430px;border-radius:27px;overflow:hidden;background:#171717;color:#fff;box-shadow:0 22px 60px #0000001a}
+.heroImage{position:absolute;inset:0;background-image:linear-gradient(90deg,#080808d9 0%,#0808088f 43%,#08080820 100%),url("https://www.hindustantimes.com/ht-img/img/2026/06/06/original/cjp_1780736180379.jpg");background-size:cover;background-position:center}
+.heroCopy{position:absolute;left:36px;bottom:34px;max-width:700px}.eyebrow{font-size:10px;font-weight:900;letter-spacing:.16em;color:#ff8d86}.heroCopy h1{font-size:clamp(40px,5vw,70px);line-height:.92;letter-spacing:-.065em;margin:12px 0 16px}.heroCopy p{font-size:13px;line-height:1.7;color:#ddd;max-width:650px;margin:0}
+.heroSide{display:grid;grid-template-rows:1fr 1fr;gap:15px}.story{border-radius:22px;overflow:hidden;position:relative;min-height:205px;background:#1b1b1b;color:#fff}.storyImage{position:absolute;inset:0;background-size:cover;background-position:center}.story:nth-child(1) .storyImage{background-image:linear-gradient(#0001,#000a),url("https://static.toiimg.com/thumb/131545733.jpg?imgsize=149988&photoid=131545733&resizemode=4&width=700")}.story:nth-child(2) .storyImage{background-image:linear-gradient(#0001,#000a),url("https://hermes.media.static.aol.com/media/2026/06/23/f4fb2272-3e60-3cbe-a4f1-3d9d520dc899/cbf461ff-aa25-4dc8-bdcd-0a231bb6e0d6.jpg")}.storyText{position:absolute;left:18px;right:18px;bottom:17px}.storyText b{font-size:15px;line-height:1.2}.storyText span{display:block;color:#ddd;font-size:10px;margin-top:5px}
+.intro{display:flex;justify-content:space-between;gap:18px;align-items:end;margin:28px 0 13px}.intro h2{margin:0;font-size:23px;letter-spacing:-.04em}.intro p{margin:4px 0 0;color:var(--muted);font-size:11px}.viewAll{border:1px solid var(--line);background:var(--paper);color:var(--text);border-radius:9px;padding:8px 11px;font-size:10px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 16px}.card{min-width:0}.media{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#191919}.media iframe,.media video,.media img{display:block;width:100%;height:100%;border:0;object-fit:cover}.media iframe{background:#000}.fallback{height:100%;display:grid;place-items:center;color:#aaa;text-align:center;font-size:11px;padding:15px}.badge{position:absolute;left:8px;top:8px;background:#111c;color:#fff;padding:5px 7px;border-radius:7px;font-size:8px;font-weight:900;letter-spacing:.08em;backdrop-filter:blur(5px)}
+.info{display:grid;grid-template-columns:33px 1fr;gap:9px;padding-top:9px}.creator{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#171717,#555);display:grid;place-items:center;color:#fff;font-size:9px;font-weight:900}.title{font-size:13px;font-weight:750;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.meta{color:var(--muted);font-size:9px;margin-top:4px}.actions{margin:6px 0 0 41px;display:flex;gap:2px}.actions button{border:0;background:transparent;color:var(--muted);font-size:10px;padding:4px 6px;border-radius:7px}.actions button:hover{background:var(--paper2);color:var(--text)}.actions .saved{color:var(--violet);font-weight:800}
+.memeGrid{grid-template-columns:repeat(5,minmax(0,1fr))}.memeGrid .media{aspect-ratio:1/1}.memeGrid .info{display:block}.memeGrid .creator{display:none}.memeGrid .actions{margin-left:0}
+.empty{padding:55px 20px;text-align:center;border:1px dashed var(--line);border-radius:16px;color:var(--muted)}
+.sectionBlock{margin-top:31px}.storyStrip{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.stripCard{height:180px;border-radius:18px;overflow:hidden;position:relative;background:#222;color:#fff}.stripCard .img{position:absolute;inset:0;background-size:cover;background-position:center}.stripCard:nth-child(1) .img{background-image:linear-gradient(#0001,#000b),url("https://cassette.sphdigital.com.sg/image/straitstimes/e90e604290dd5f8425c32ff8ec60d84996257f71828ad489993eeef40e9f42d8")}.stripCard:nth-child(2) .img{background-image:linear-gradient(#0001,#000b),url("https://greaterjammu.com/storage/2026/06/PTI06_06_2026_000115B-696x464-1.jpg")}.stripCard:nth-child(3) .img{background-image:linear-gradient(#0001,#000b),url("https://static.toiimg.com/thumb/131545733.jpg?imgsize=149988&photoid=131545733&resizemode=4&width=700")}.stripCard div:last-child{position:absolute;left:16px;right:16px;bottom:15px}.stripCard b{font-size:14px}.stripCard span{display:block;color:#ddd;font-size:10px;margin-top:4px}
+.overlay{display:none;position:fixed;inset:0;background:#0009;z-index:200;align-items:center;justify-content:center;padding:15px}.overlay.show{display:flex}.modal{width:min(560px,100%);background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px}.close{float:right;border:0;background:var(--paper2);color:var(--text);width:34px;height:34px;border-radius:9px}.modal h3{margin:0}.modal p{font-size:12px;color:var(--muted);line-height:1.6}.toast{position:fixed;z-index:300;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;background:#171717;color:#fff;padding:10px 14px;border-radius:9px;font-size:11px;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:1150px){.grid{grid-template-columns:repeat(3,1fr)}.memeGrid{grid-template-columns:repeat(4,1fr)}.hero{grid-template-columns:1fr}.heroSide{grid-template-columns:1fr 1fr;grid-template-rows:none}}
+@media(max-width:850px){
+ .nav{height:auto;min-height:64px;flex-wrap:wrap;padding:9px 13px;gap:9px}.topbar{height:auto}.brand{min-width:auto}.brand small{display:none}.search{order:4;flex-basis:100%;max-width:none}.topActions{min-width:auto;margin-left:auto}.shell{display:block;margin-top:46px}.side{position:fixed;z-index:90;left:0;right:0;top:64px;height:46px;padding:5px 8px;display:flex;overflow:auto;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}.side button{width:auto;white-space:nowrap;padding:6px 10px;margin:0}.side .ico{width:25px;height:25px}.sep,.sideLabel{display:none}.main{padding:17px 13px 55px}.heroMain{min-height:410px}.heroSide{grid-template-columns:1fr 1fr}.grid{grid-template-columns:repeat(2,1fr);gap:20px 10px}.memeGrid{grid-template-columns:repeat(3,1fr)}.storyStrip{grid-template-columns:1fr}}
+@media(max-width:520px){.brand b{font-size:15px}.brand strong{display:block}.topActions .hideMobile{display:none}.avatar{width:32px;height:32px}.heroCopy{left:23px;right:20px;bottom:25px}.heroCopy h1{font-size:43px}.heroSide{grid-template-columns:1fr}.story{min-height:180px}.memeGrid{grid-template-columns:repeat(2,1fr)}.info{grid-template-columns:1fr}.creator{display:none}.actions{margin-left:0}.title{font-size:12px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+<nav class="nav">
+ <a class="brand" href="#" onclick="go('home');return false"><div class="logo"></div><div><b>CJPTube</b><small>CJP visual archive</small></div></a>
+ <div class="search"><input id="search" placeholder="Search videos, shorts, reels & memes"><button onclick="searchNow()">⌕</button></div>
+ <div class="topActions"><button class="mode" id="themeBtn" onclick="toggleTheme()" title="Toggle theme">☾</button><button class="hideMobile" onclick="go('saved')" title="Saved">♡</button><div class="avatar" title="CJPTube"><span aria-hidden="true">🪳</span></div></div>
+</nav>
+<div class="navTopics">
+ <button data-topic="home" class="active">All</button><button data-topic="videos">Videos</button><button data-topic="shorts">Shorts</button><button data-topic="shorts">Reels</button><button data-topic="memes">Memes</button><button data-topic="saved">Saved</button>
+</div>
+</header>
+
+<div class="shell">
+<aside class="side">
+ <button data-page="home" class="active"><span class="ico">⌂</span>Home</button>
+ <button data-page="videos"><span class="ico">▶</span>Videos</button>
+ <button data-page="shorts"><span class="ico">▣</span>Shorts & Reels</button>
+ <button data-page="memes"><span class="ico">▤</span>Memes</button>
+ <hr class="sep"><div class="sideLabel">Your library</div>
+ <button data-page="saved"><span class="ico">♡</span>Saved</button>
+</aside>
+<main class="main" id="main"></main>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/*
+===========================================================
+CREATIVE CJP — GITHUB CONTENT EDITOR
+===========================================================
+ONLY EDIT CONTENT AND HOMEPAGE_STORIES BELOW.
+
+Users do not get an upload/add button.
+Commit this file to GitHub; Vercel rebuilds the site.
+
+CONTENT object:
+{
+ id:"001",
+ title:"Your title",
+ type:"video", // video | short | meme
+ url:"https://...",
+ thumbnail:"", // optional
+ author:"CJPTube",
+ date:"2026-10-02",
+ views:"12K"
+}
+
+Use official/embeddable links whenever possible.
+===========================================================
+*/
+const CONTENT = [
+  // {id:"001",title:"Example video",type:"video",url:"https://www.youtube.com/watch?v=YOUR_ID",thumbnail:"",author:"CJPTube",date:"2026-10-02",views:"12K"},
+];
+
+const HOMEPAGE_STORIES = [
+ {title:"Jantar Mantar — June 6",subtitle:"CJP supporters gather during the Education Minister protest",image:"https://www.hindustantimes.com/ht-img/img/2026/06/06/original/cjp_1780736180379.jpg",credit:"Hindustan Times"},
+ {title:"The crowd & the slogans",subtitle:"Young protesters, placards and the Cockroach movement",image:"https://static.toiimg.com/thumb/131545733.jpg?imgsize=149988&photoid=131545733&resizemode=4&width=700",credit:"Times of India"},
+ {title:"The movement in the streets",subtitle:"A large youth gathering at Jantar Mantar",image:"https://hermes.media.static.aol.com/media/2026/06/23/f4fb2272-3e60-3cbe-a4f1-3d9d520dc899/cbf461ff-aa25-4dc8-bdcd-0a231bb6e0d6.jpg",credit:"AOL"},
+ {title:"A protester’s message",subtitle:"Handmade placards became a language of the movement",image:"https://cassette.sphdigital.com.sg/image/straitstimes/e90e604290dd5f8425c32ff8ec60d84996257f71828ad489993eeef40e9f42d8",credit:"The Straits Times"},
+ {title:"CJP at Jantar Mantar",subtitle:"Speeches, masks, flowers and a packed protest site",image:"https://greaterjammu.com/storage/2026/06/PTI06_06_2026_000115B-696x464-1.jpg",credit:"PTI / Greater Jammu"}
+];
+
+const SAVE_KEY="creative_cjp_saved_v3";
+let saved=[];try{saved=JSON.parse(localStorage.getItem(SAVE_KEY)||"[]")}catch(e){}
+let page="home",activeList=[];
+
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+const isSaved=id=>saved.includes(id);
+function persist(){localStorage.setItem(SAVE_KEY,JSON.stringify(saved))}
+function toast(s){let t=document.getElementById("toast");t.textContent=s;t.classList.add("show");clearTimeout(window._t);window._t=setTimeout(()=>t.classList.remove("show"),1800)}
+function yt(url){try{let u=new URL(url);if(u.hostname.includes("youtu.be"))return u.pathname.slice(1).split("/")[0];if(u.hostname.includes("youtube.com")){if(u.pathname==="/watch")return u.searchParams.get("v");let m=u.pathname.match(/\/(?:shorts|embed|live)\/([^/?]+)/);return m&&m[1]}}catch(e){}return null}
+function ig(url){try{let u=new URL(url);if(u.hostname.includes("instagram.com")&&/\/(reel|reels|p)\//.test(u.pathname))return u.origin+u.pathname.replace(/\/$/,"")+"/embed"}catch(e){}return null}
+function drive(url){try{let u=new URL(url),m=u.pathname.match(/\/file\/d\/([^/]+)/);if(u.hostname.includes("drive.google.com")&&m)return "https://drive.google.com/file/d/"+m[1]+"/preview"}catch(e){}return null}
+function media(x){
+ let y=yt(x.url);if(y)return `<iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(y)}?rel=0&modestbranding=1" title="${esc(x.title)}" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen></iframe>`;
+ let i=ig(x.url);if(i)return `<iframe loading="lazy" src="${esc(i)}" title="${esc(x.title)}" scrolling="no" allowtransparency="true"></iframe>`;
+ let d=drive(x.url);if(d)return `<iframe loading="lazy" src="${esc(d)}" title="${esc(x.title)}" allow="autoplay"></iframe>`;
+ if(/\.(mp4|webm|ogg)(\?.*)?$/i.test(x.url))return `<video controls preload="metadata" playsinline poster="${esc(x.thumbnail||"")}"><source src="${esc(x.url)}"></video>`;
+ if(x.type==="meme"||/\.(png|jpe?g|gif|webp|avif)(\?.*)?$/i.test(x.url))return `<img src="${esc(x.url)}" alt="${esc(x.title)}" loading="lazy">`;
+ if(x.thumbnail)return `<img src="${esc(x.thumbnail)}" alt="" loading="lazy">`;
+ return `<div class="fallback">Preview unavailable<br><br><a href="${esc(x.url)}" target="_blank" rel="noopener">Open original ↗</a></div>`;
+}
+function card(x){
+ let s=isSaved(x.id);
+ return `<article class="card"><div class="media">${media(x)}<span class="badge">${x.type==="short"?"SHORT / REEL":x.type.toUpperCase()}</span></div>
+ <div class="info"><div class="creator">CJP</div><div><div class="title">${esc(x.title)}</div><div class="meta">${esc(x.author||"CJPTube")} · ${esc(x.views||"")} ${x.views?"views · ":""}${esc(x.date||"")}</div></div></div>
+ <div class="actions"><button class="${s?"saved":""}" onclick="toggleSave('${esc(x.id)}')">${s?"♥ Saved":"♡ Save"}</button><button onclick="share('${esc(x.id)}')">↗ Share</button><button onclick="openOriginal('${esc(x.id)}')">Open</button></div></article>`;
+}
+function grid(list,cls=""){return list.length?`<div class="grid ${cls}">${list.map(card).join("")}</div>`:`<div class="empty">No content has been published in this section yet.</div>`}
+function count(t){return CONTENT.filter(x=>x.type===t).length}
+function storyStrip(){
+ return `<div class="storyStrip">${HOMEPAGE_STORIES.slice(2).map(x=>`<article class="stripCard"><div class="img" style="background-image:linear-gradient(#0001,#000b),url('${esc(x.image)}')"></div><div><b>${esc(x.title)}</b><span>${esc(x.subtitle)}</span><small style="display:block;color:#bbb;font-size:8px;margin-top:5px">${esc(x.credit||"Source")}</small></div></article>`).join("")}</div>`
+}
+function setActive(){
+ document.querySelectorAll("[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
+ document.querySelectorAll("[data-topic]").forEach(b=>b.classList.toggle("active",b.dataset.topic===page));
+}
+function render(){
+ setActive();let main=document.getElementById("main");
+ if(page==="home"){
+  activeList=[...CONTENT].sort((a,b)=>String(b.date||"").localeCompare(String(a.date||"")));
+  main.innerHTML=`<section class="hero">
+   <div class="heroMain"><div class="heroImage"></div><div class="heroCopy"><div class="eyebrow">CREATIVE CJP · VISUAL ARCHIVE</div><h1>Ideas become<br>visuals.</h1><p>Real protest photography, videos, short-form edits, reels and memes — brought together as one visual archive.</p></div></div>
+   <div class="heroSide"><article class="story"><div class="storyImage" style="background-image:linear-gradient(#0001,#000a),url('${esc(HOMEPAGE_STORIES[1].image)}')"></div><div class="storyText"><b>${esc(HOMEPAGE_STORIES[1].title)}</b><span>${esc(HOMEPAGE_STORIES[1].subtitle)}</span></div></article>
+   <article class="story"><div class="storyImage" style="background-image:linear-gradient(#0001,#000a),url('${esc(HOMEPAGE_STORIES[2].image)}')"></div><div class="storyText"><b>${esc(HOMEPAGE_STORIES[2].title)}</b><span>${esc(HOMEPAGE_STORIES[2].subtitle)}</span></div></article></div>
+  </section>
+  <div class="intro"><div><h2>Latest from the archive</h2><p>Freshly curated content</p></div><button class="viewAll" onclick="go('videos')">Explore →</button></div>${grid(activeList.slice(0,8))}
+  <section class="sectionBlock"><div class="intro"><div><h2>A visual story</h2><p>Real CJP protest photography from published coverage.</p></div></div>${storyStrip()}<p style="color:var(--muted);font-size:9px;margin:9px 2px 0">Editorial photographs are credited to their original publishers/photographers. Replace these remote image URLs with images you have permission to host before public deployment.</p></section>
+  <div class="intro"><div><h2>Memes</h2><p>Quick, visual and shareable</p></div><button class="viewAll" onclick="go('memes')">See all →</button></div>${grid(CONTENT.filter(x=>x.type==="meme").slice(0,5),"memeGrid")}`;
+ }else{
+  let title="",sub="",cls="";
+  if(page==="videos"){title="Videos";sub="Long-form and standard video content"}
+  if(page==="shorts"){title="Shorts & Reels";sub="Short-form edits and vertical content"}
+  if(page==="memes"){title="Memes";sub="The dedicated visual meme collection";cls="memeGrid"}
+  if(page==="saved"){title="Saved";sub="Your personal saved collection"}
+  activeList=page==="saved"?CONTENT.filter(x=>isSaved(x.id)):CONTENT.filter(x=>x.type===(page==="videos"?"video":page==="shorts"?"short":"meme"));
+  main.innerHTML=`<div class="intro"><div><h2>${title}</h2><p>${sub}</p></div></div>${grid(activeList,cls)}`;
+ }
+}
+function go(p){page=p;render();window.scrollTo({top:0,behavior:"smooth"})}
+document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>go(b.dataset.page));
+document.querySelectorAll("[data-topic]").forEach(b=>b.onclick=()=>go(b.dataset.topic));
+function toggleSave(id){if(isSaved(id))saved=saved.filter(x=>x!==id);else saved.push(id);persist();render();toast(isSaved(id)?"Saved locally":"Removed from saved")}
+function openOriginal(id){let x=CONTENT.find(x=>x.id===id);if(x)window.open(x.url,"_blank","noopener")}
+async function share(id){let x=CONTENT.find(x=>x.id===id);if(!x)return;try{if(navigator.share)await navigator.share({title:x.title,text:"CJPTube",url:x.url});else{await navigator.clipboard.writeText(x.url);toast("Original link copied")}}catch(e){}}
+function searchNow(){let q=document.getElementById("search").value.trim().toLowerCase();if(!q){render();return}activeList=CONTENT.filter(x=>(x.title+" "+x.type+" "+(x.author||"")).toLowerCase().includes(q));document.getElementById("main").innerHTML=`<div class="intro"><div><h2>Search results</h2><p>${activeList.length} matching result(s)</p></div></div>${grid(activeList)}`}
+document.getElementById("search").addEventListener("keydown",e=>{if(e.key==="Enter")searchNow()});
+
+function applyTheme(t){document.documentElement.dataset.theme=t;localStorage.setItem("creative_cjp_theme",t);document.getElementById("themeBtn").textContent=t==="dark"?"☀":"☾"}
+function toggleTheme(){applyTheme(document.documentElement.dataset.theme==="dark"?"light":"dark")}
+applyTheme(localStorage.getItem("creative_cjp_theme")||"light");
+render();
+</script>
+</body>
+</html>
